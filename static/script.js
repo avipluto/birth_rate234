@@ -7,8 +7,8 @@ form.addEventListener('submit', async (e) => {
   });
   const data = await res.json();
   const resultDiv = document.getElementById('result');
-  if (data.prediction) {
-    resultDiv.textContent = 'Prediction Result: ' + data.prediction + ' oz';
+  if (data.prediction !== undefined) {
+    resultDiv.textContent = data.prediction + ' oz';
   } else if (data.error) {
     resultDiv.textContent = 'Error: ' + data.error;
   }
