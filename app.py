@@ -16,6 +16,14 @@ def get_clean_data(form_data):
     weight = float(form_data['weight'])
     smoke = float(form_data['smoke'])
 
+    # Range validation
+    if not (140 <= gestation <= 315): raise ValueError("Gestation out of range")
+    if not (0 <= parity <= 15): raise ValueError("Parity out of range")
+    if not (15 <= age <= 55): raise ValueError("Age out of range")
+    if not (48 <= height <= 76): raise ValueError("Height out of range")
+    if not (80 <= weight <= 300): raise ValueError("Weight out of range")
+    if smoke not in [0, 1]: raise ValueError("Invalid smoke status")
+
     cleaned_data = {
         'gestation': [gestation],
         'parity': [parity],
