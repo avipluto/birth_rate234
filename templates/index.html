@@ -10,27 +10,35 @@
   <div class="form-container">
     <h1>Birth Weight Prediction</h1>
     <form>
-      <label>Gestation</label>
-      <input name="gestation" type="number">
+      <label>Gestation <span class="hint">days</span></label>
+      <input name="gestation" type="number" placeholder="e.g. 280" min="140" max="315" step="1" required>
 
-      <label>Parity</label>
-      <input name="parity" type="number">
+      <label>Parity <span class="hint">prior births</span></label>
+      <input name="parity" type="number" placeholder="e.g. 0" min="0" max="15" step="1" required>
 
-      <label>Age</label>
-      <input name="age" type="number">
+      <label>Age <span class="hint">years</span></label>
+      <input name="age" type="number" placeholder="e.g. 27" min="15" max="55" step="1" required>
 
-      <label>Height</label>
-      <input name="height" type="number">
+      <label>Height <span class="hint">inches</span></label>
+      <input name="height" type="number" placeholder="e.g. 64" min="48" max="76" step="0.5" required>
 
-      <label>Weight</label>
-      <input name="weight" type="number">
+      <label>Weight <span class="hint">lbs (pre-pregnancy)</span></label>
+      <input name="weight" type="number" placeholder="e.g. 130" min="80" max="300" step="1" required>
 
-      <label>Smoker</label>
-      <input name="smoke" type="number">
+      <label>Smoking Status <span class="hint">affects prediction</span></label>
+      <select name="smoke" required>
+        <option value="" disabled selected>Select status…</option>
+        <option value="0">Non-smoker</option>
+        <option value="1">Smoker</option>
+      </select>
+
+      <div id="error-msg" style="display:none; color:red; margin-top:10px; font-size:13px;"></div>
 
       <button type="submit">Predict Birth Weight</button>
     </form>
-    <div id="result"></div>
+    <div id="result-card" style="display:none;">
+      <div id="result"></div>
+    </div>
   </div>
   <script src="/static/script.js"></script>
 </body>

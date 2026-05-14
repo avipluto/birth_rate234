@@ -25,14 +25,21 @@ h1 {
 }
 
 label {
-  display: block;
-  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 15px;
   font-weight: bold;
   color: #444;
 }
 
-input {
+.hint {
+  font-size: 11px;
+  color: #999;
+  font-weight: normal;
+}
+
+input, select {
   width: 100%;
   padding: 10px;
   margin-top: 6px;
@@ -41,7 +48,12 @@ input {
   font-size: 14px;
 }
 
-input:focus {
+select {
+  background: white;
+  cursor: pointer;
+}
+
+input:focus, select:focus {
   border-color: #2575fc;
   outline: none;
   box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);

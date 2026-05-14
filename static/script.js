@@ -1,15 +1,31 @@
 const form = document.querySelector('form');
+const errorMsg = document.getElementById('error-msg');
+const resultCard = document.getElementById('result-card');
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const res = await fetch('/predict', {
-    method: 'POST',
-    body: new FormData(form)
-  });
-  const data = await res.json();
-  const resultDiv = document.getElementById('result');
-  if (data.prediction !== undefined) {
-    resultDiv.textContent = data.prediction + ' oz';
-  } else if (data.error) {
-    resultDiv.textContent = 'Error: ' + data.error;
+
+  // On new submission, hide both first
+  errorMsg.style.display = 'none';
+  resultCard.style.display = 'none';
+
+  try {
+    const res = await fetch('/predict', {
+      method: 'POST',
+      body: new FormData(form)
+    });
+    const data = await res.json();
+
+    if (data.error) {
+      errorMsg.style.display = 'block';
+      errorMsg.textContent = data.error;
+    } else {
+      errorMsg.style.display = 'none';
+      document.getElementById('result').textContent = data.prediction + ' oz';
+      resultCard.style.display = 'block';
+    }
+  } catch (err) {
+    errorMsg.style.display = 'block';
+    errorMsg.textContent = 'An unexpected error occurred.';
   }
 });
